@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Start.unity
+    guid: 50737c1588d0246938105fdd7f1fa238
+  - enabled: 1
+    path: Assets/Scenes/Falling Mechanic.unity
+    guid: 8591edaf5c6404f6d9f40ae80f22dd7f
+  m_configObjects: {}
