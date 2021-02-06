@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 474465399794674096}
   - component: {fileID: 474465399794674111}
   - component: {fileID: 474465399794674098}
-  - component: {fileID: 474465399794674099}
   - component: {fileID: 8531362755366560663}
   - component: {fileID: 813332352856270512}
+  - component: {fileID: 45214178072288113}
   m_Layer: 0
   m_Name: Meteorite
-  m_TagString: Untagged
+  m_TagString: Meteoroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,19 +123,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &474465399794674099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 474465399794674110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 133ab721598cc434d89fdc798cb17ea6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bell: {fileID: 8300000, guid: 142d64150ee4b4dfa9c10898993b933e, type: 3}
 --- !u!114 &8531362755366560663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,3 +232,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &45214178072288113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474465399794674110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cdd31acc1d42478da45f862364ff3ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: Blue
+  correct: 0

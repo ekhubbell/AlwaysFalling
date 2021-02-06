@@ -7,64 +7,76 @@ public class playerFalling : MonoBehaviour
     public float speed;
     public float fallSpeed;
 
-    public float Maxfallspeed;
-
-    public bool spacePressed;
-
-    private Rigidbody2D myRb;
-
+    bool isColliding;
+    CircleCollider2D circle;
+    Vector3 dir;
 
     // Start is called before the first frame update
     void Start()
     {
-        myRb = GetComponent<Rigidbody2D>(); //gets RidgidBody 2D
-
-        spacePressed = false;
+        circle = GetComponent<CircleCollider2D>();
+        dir = Vector3.zero;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        myRb.velocity = new Vector2(myRb.velocity.x, -fallSpeed); //player is constantly falling downwards
+        dir.x += Input.acceleration.x;
 
-        if (Input.GetKey(KeyCode.RightArrow) && transform.position.x<4.8)
-        {
-            myRb.velocity = new Vector2(speed, myRb.velocity.y); //moves player right
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow) && transform.position.x > -4.8)
-        {
-            myRb.velocity = new Vector2(-speed, myRb.velocity.y); //moves player right
-        }
-        else if (!(Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow))) //if the player is not pressing anything
-        {
-            myRb.velocity = new Vector2(0, myRb.velocity.y); //stop the player
-        }
+        if (dir.sqrMagnitude > 1)
+            dir.Normalize();
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        //for debugging in editor
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
-            StartCoroutine("WaitTime"); //starts a wait for seconds
+            dir.x = -1;
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            dir.x = 1;
         }
 
-        if(spacePressed == true)
+        dir.x *= speed;
+        dir.y = -fallSpeed;
+
+        // Make it move 10 meters per second instead of 10 meters per frame...
+        dir *= Time.fixedDeltaTime;
+
+        
+
+        if (dir.x < 0)
         {
-            if (fallSpeed <= Maxfallspeed)
-            {
-                fallSpeed += 0.5f; //speeds up the fall speed until reaching the max
-            }
-            else
-            {
-                spacePressed = false;
-            }
+            isColliding = checkCollision(Vector2.left);
         }
+        else if(dir.x>0)
+        {
+            isColliding = checkCollision(Vector2.right);
+        }
+
+        if(!isColliding)
+        {
+            transform.Translate(dir);
+        }
+        else
+        {
+            transform.Translate(new Vector3(0,dir.y,0));
+        }
+
+        
     }
 
-    private IEnumerator WaitTime()
+    bool checkCollision(Vector2 direction)
     {
-        //fallSpeed = 0; //suspends the player briefly
+        Vector2 origin = circle.bounds.center;
+        float distance = circle.radius + .05f;
 
-        Time.timeScale = 0.5f;
-        yield return new WaitForSeconds(0.5f);
-        spacePressed = true; //starts speeding up the fall to the fall speed max
-        Time.timeScale = 1.0f;
+        RaycastHit2D hitInfo = Physics2D.Raycast(origin, direction, distance,256);
+        if(hitInfo.collider!=null)
+        {
+            //Debug.Log(hitInfo);
+            return true;
+        }
+        return false;
     }
+
 }

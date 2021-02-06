@@ -14,7 +14,7 @@ public class scrolling : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 offset = new Vector2(0, -Time.time * speed);
+        Vector2 offset = new Vector2(0, -Time.time * speed * Mathf.Clamp(Score.modifier,1f,7f));
         r.material.mainTextureOffset = offset;
     }
 }

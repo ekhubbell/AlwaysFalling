@@ -4,26 +4,36 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
-    public static int score;
-    public static int highscore;
+    public static int score=0;
+    public static int highscore=0;
     public static float modifier = 1.0f;
 
     public AudioClip bell;
 
+    private void Start()
+    {
+        
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.transform.localScale == transform.localScale)
+        if (collision.gameObject.CompareTag("Meteoroid"))
         {
-            score += 1 * (int)modifier;
-            modifier += 0.5f;
-            collision.gameObject.GetComponent<AudioSource>().PlayOneShot(bell);
+            if (collision.gameObject.transform.localScale == transform.localScale)
+            {
+                score += 1 * (int)modifier;
+                modifier += 0.5f;
+                gameObject.GetComponent<AudioSource>().PlayOneShot(bell);
+            }
+            else
+            {
+                score = 0;
+                modifier = 1f;
+            }
+            Destroy(collision.gameObject);
         }
-        else
-        {
-            score =0;
-            modifier = 1;
-        }
-        Destroy(gameObject);
+            
+        
     }
 
     private void Update()

@@ -5,19 +5,19 @@ using TMPro;
 
 public class DisplayScore : MonoBehaviour
 {
-    Score score;
+    //Score score;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI highScoreText;
     // Start is called before the first frame update
     void Start()
     {
-        score = new Score();
+        //score = new Score();
     }
 
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = "Score: " + score.returnScore();
-        highScoreText.text = "High Score: " + score.returnHighScore();
+        scoreText.text = "Score: " + Score.score;
+        highScoreText.text = "High Score: " + Score.highscore;
     }
 }
