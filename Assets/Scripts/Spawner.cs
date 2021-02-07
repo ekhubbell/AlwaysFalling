@@ -17,6 +17,7 @@ public class Spawner : MonoBehaviour
     {
         remainingTime = totalTime;
         objectSpawned = 0;
+        color = "Blue";
     }
 
     // Update is called once per frame

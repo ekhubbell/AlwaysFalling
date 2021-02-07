@@ -21,20 +21,31 @@ public class playerFalling : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        dir.x += Input.acceleration.x;
+        float acc = Input.acceleration.x;
+        if(acc==0)
+        {
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                acc = -.25f;
+            }
+            else if (Input.GetKey(KeyCode.RightArrow))
+            {
+                acc = .25f;
+            }
+        }
 
-        if (dir.sqrMagnitude > 1)
-            dir.Normalize();
+        if (!((dir.x>0 &&acc>0)||(dir.x < 0 && acc < 0)))
+        {
+            dir.x = 0;
+        }
+        dir.x += acc;
+        
+
+        //if (dir.sqrMagnitude > 1)
+        //    dir.Normalize();
 
         //for debugging in editor
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            dir.x = -1;
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            dir.x = 1;
-        }
+        
 
         dir.x *= speed;
         dir.y = -fallSpeed;

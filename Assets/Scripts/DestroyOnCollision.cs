@@ -15,8 +15,7 @@ public class DestroyOnCollision : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Meteoroid") && collision.gameObject.GetComponent<Correct>().correct)
         {
-            Score.score = 0;
-            Score.modifier = 1f;
+            Score.modifier = Mathf.Clamp(1f, Score.modifier, Score.modifier - 1);
         }
         Destroy(collision.gameObject);
     }

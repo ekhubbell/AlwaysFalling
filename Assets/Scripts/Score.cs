@@ -19,7 +19,7 @@ public class Score : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Meteoroid"))
         {
-            if (collision.gameObject.transform.localScale == transform.localScale)
+            if (collision.gameObject.GetComponent<Correct>().correct)
             {
                 score += 1 * (int)modifier;
                 modifier += 0.5f;
@@ -41,6 +41,14 @@ public class Score : MonoBehaviour
         if(score> highscore)
         {
             highscore = score;
+        }
+        if (modifier < 1)
+        {
+            modifier = 1;
+        }
+        if (score < 0)
+        {
+            score = 0;
         }
     }
 
