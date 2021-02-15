@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
+using TMPro;
 
 public class Score : MonoBehaviour
 {
@@ -8,11 +10,17 @@ public class Score : MonoBehaviour
     public static int highscore=0;
     public static float modifier = 1.0f;
 
+    public static event Action GameOver = delegate { };
+    //bool gameOver;
     public AudioClip bell;
 
+    public GameObject[] particles;
+
+
+    public TextMeshProUGUI db;
     private void Start()
     {
-        
+        //gameOver = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,23 +32,33 @@ public class Score : MonoBehaviour
                 score += 1 * (int)modifier;
                 modifier += 0.5f;
                 gameObject.GetComponent<AudioSource>().PlayOneShot(bell);
+                for(int i=0; i<particles.Length; i++)
+                {
+                    if (particles[i].CompareTag(gameObject.tag))
+                    {
+                        Instantiate(particles[i], gameObject.transform);
+                        break;
+                    }
+                }
+                Destroy(collision.gameObject);
             }
             else
             {
+                GameOver();
+                PlayerPrefs.SetInt("Score", score);
                 score = 0;
                 modifier = 1f;
             }
-            Destroy(collision.gameObject);
-        }
             
+        }     
         
     }
 
     private void Update()
     {
-        if(score> highscore)
+        if(score> PlayerPrefs.GetInt("highscore",0))
         {
-            highscore = score;
+            PlayerPrefs.SetInt("highscore", score);
         }
         if (modifier < 1)
         {
@@ -60,7 +78,7 @@ public class Score : MonoBehaviour
 
     public int returnHighScore()
     {
-        return highscore;
+        return PlayerPrefs.GetInt("highscore",0);
     }
 
 }

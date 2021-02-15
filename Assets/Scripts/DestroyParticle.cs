@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PhoneControls : MonoBehaviour
+public class DestroyParticle : MonoBehaviour
 {
+    ParticleSystem particle;
     // Start is called before the first frame update
     void Start()
     {
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
-        Screen.orientation = ScreenOrientation.Portrait;
+        particle = GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(particle.isStopped)
+        {
+            Destroy(gameObject);
+        }
     }
 }

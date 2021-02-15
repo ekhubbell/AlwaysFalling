@@ -18,6 +18,6 @@ public class DisplayScore : MonoBehaviour
     void Update()
     {
         scoreText.text = "Score: " + Score.score;
-        highScoreText.text = "High Score: " + Score.highscore;
+        highScoreText.text = "High Score: " + PlayerPrefs.GetInt("highscore",0);
     }
 }

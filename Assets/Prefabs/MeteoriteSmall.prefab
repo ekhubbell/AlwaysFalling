@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 7137099150597428986}
   - component: {fileID: 1893982231421803086}
   - component: {fileID: -49587551740321103}
+  - component: {fileID: 1884539569154820529}
+  - component: {fileID: -1455101794601218222}
   m_Layer: 0
   m_Name: MeteoriteSmall
   m_TagString: Meteoroid
@@ -246,3 +248,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: Green
   correct: 0
+--- !u!95 &1884539569154820529
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6925578660256719581}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 142202d9cc18146f9869bd137301ed3a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-1455101794601218222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6925578660256719581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a651f4c9f9594ca4bf796a34b1182a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

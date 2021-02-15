@@ -9,6 +9,7 @@ TagManager:
   - Purple
   - Destroy
   - Meteoroid
+  - Audio
   layers:
   - Default
   - TransparentFX
